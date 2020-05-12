@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fpl_mobile/components/gameweek_text.dart';
 
 class FlatNavigationButton extends StatelessWidget {
-  FlatNavigationButton({this.icon, this.onPressed, this.text, this.screen});
+  FlatNavigationButton({this.icon, this.onPressed, this.text});
   final IconData icon;
   final String text;
   final Function onPressed;
-  final Widget screen;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,7 @@ class FlatNavigationButton extends StatelessWidget {
           // ),
           title: GameweekText(text: text, fontSize: 13.0),
         ),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => screen),
-        ),
+        onPressed: onPressed,
       ),
     );
   }

@@ -2,47 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:fpl_mobile/components/gameweek_text.dart';
 import 'package:fpl_mobile/components/flat_navigation_button.dart';
 import 'package:fpl_mobile/components/blinking_animation.dart';
-import 'package:fpl_mobile/screens/my_team_screen.dart';
+import 'package:fpl_mobile/screens/fixtures_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:fpl_mobile/viewmodels/menu_model.dart';
 
 //Make it stateless?
 
-class MainScreen extends StatefulWidget {
-  MainScreen({
-    this.bootstrapData,
-    this.currentGwData,
-    this.teamPairList,
-  });
-  final bootstrapData;
-  final currentGwData;
-  final teamPairList;
+// class MainScreen extends StatelessWidget {
+// MainScreen();
 
+//   @override
+//   _MainScreenState createState() => _MainScreenState();
+// }
+
+// class _MainScreenState extends State<MainScreen> {
+//   String gwStatus;
+//   List<List<String>> fixtureData;
+
+// @override
+// void initState() {
+//   super.initState();
+// fixtureData = widget.teamPairList;
+// fixtureList = getTextWidgets(widget.teamPairList);
+// gwStatus = setGwStatus(widget.currentGwData);
+// }
+
+// String setGwStatus(Map gameweekTime) {
+//   final gameweek = DateTime.parse(gameweekTime["deadline_time"]);
+//   final currentTime = DateTime.now();
+//   if (gameweek.isBefore(currentTime) && gameweekTime["finished"] == false) {
+//     return 'LIVE!';
+//   } else {
+//     return 'Upcoming!';
+//   }
+// }
+class MenuScreen extends StatelessWidget {
   @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  String gwStatus;
-  List<List<String>> fixtureData;
-
-  @override
-  void initState() {
-    super.initState();
-    fixtureData = widget.teamPairList;
-    // fixtureList = getTextWidgets(widget.teamPairList);
-    gwStatus = setGwStatus(widget.currentGwData);
-  }
-
-  String setGwStatus(Map gameweekTime) {
-    final gameweek = DateTime.parse(gameweekTime["deadline_time"]);
-    final currentTime = DateTime.now();
-    if (gameweek.isBefore(currentTime) && gameweekTime["finished"] == false) {
-      return 'LIVE!';
-    } else {
-      return 'Upcoming!';
-    }
-  }
-
   Widget build(BuildContext context) {
+    var data = Provider.of<MenuModel>(context, listen: false);
+    const gwStatus = "LIVE!";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -76,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: <Widget>[
                           GameweekText(text: 'GAMEWEEK', fontSize: 13.0),
                           Text(
-                            '${widget.currentGwData["id"]}',
+                            '${data.gameweekId}',
                             style: TextStyle(fontSize: 60.0),
                           ),
                         ],
@@ -90,23 +88,23 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                         ),
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          BlinkingAnimation(children: <Widget>[
-                            Icon(Icons.notifications_active, size: 15.0),
-                            Icon(Icons.notifications_active,
-                                color: Colors.transparent),
-                          ]),
-                          Text(
-                            '$gwStatus',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                        ],
-                      ),
-                      // GameweekText(
-                      //     text:
-                      //         'Deadline: ${widget.currentGwData["deadline_time"].substring(0, 16)}'),
+                      // Row(
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: <Widget>[
+                      //     BlinkingAnimation(children: <Widget>[
+                      //       Icon(Icons.notifications_active, size: 15.0),
+                      //       Icon(Icons.notifications_active,
+                      //           color: Colors.transparent, size: 15.0),
+                      //     ]),
+                      //     Text(
+                      //       '$gwStatus',
+                      //       style: TextStyle(fontSize: 20.0),
+                      //     ),
+                      //   ],
+                      // ),
+                      // Expanded(
+                      //   child: GameweekText(text: 'Deadline: ${data.deadline}'),
+                      // ),
                       // GameweekText(text: 'Status: $gwStatus'),
                       // GameweekText(text: 'Status: $gwStatus'),
                     ],
@@ -119,32 +117,37 @@ class _MainScreenState extends State<MainScreen> {
                     FlatNavigationButton(
                       icon: Icons.group,
                       text: 'My Team',
-                      screen: MyTeamScreen(),
+                      // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(
                       icon: Icons.face,
                       text: 'Players',
-                      screen: MyTeamScreen(),
+                      // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(
                       icon: Icons.group,
                       text: 'Teams',
-                      screen: MyTeamScreen(),
+                      // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(
                       icon: Icons.calendar_today,
                       text: 'Fixtures',
-                      screen: MyTeamScreen(),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FixturesScreen()),
+                      ),
+                      // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(
                       icon: Icons.local_hospital,
                       text: 'Injuries',
-                      screen: MyTeamScreen(),
+                      // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(
                       icon: Icons.calendar_today,
                       text: 'Calendar',
-                      screen: MyTeamScreen(),
+                      // screen: MyTeamScreen(),
                     ),
                   ],
                 ),

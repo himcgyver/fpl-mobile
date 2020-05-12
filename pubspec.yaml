@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
+  provider: ^4.0.4
+  get_it: ^4.0.1
   http: ^0.12.0+4
   flutter_spinkit: ^4.1.1+1
   modal_progress_hud: ^0.1.3
