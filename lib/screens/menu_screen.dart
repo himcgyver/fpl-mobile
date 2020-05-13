@@ -1,41 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fpl_mobile/components/gameweek_text.dart';
 import 'package:fpl_mobile/components/flat_navigation_button.dart';
-import 'package:fpl_mobile/components/blinking_animation.dart';
+// import 'package:fpl_mobile/components/blinking_animation.dart';
 import 'package:fpl_mobile/screens/fixtures_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:fpl_mobile/viewmodels/menu_model.dart';
 
-//Make it stateless?
-
-// class MainScreen extends StatelessWidget {
-// MainScreen();
-
-//   @override
-//   _MainScreenState createState() => _MainScreenState();
-// }
-
-// class _MainScreenState extends State<MainScreen> {
-//   String gwStatus;
-//   List<List<String>> fixtureData;
-
-// @override
-// void initState() {
-//   super.initState();
-// fixtureData = widget.teamPairList;
-// fixtureList = getTextWidgets(widget.teamPairList);
-// gwStatus = setGwStatus(widget.currentGwData);
-// }
-
-// String setGwStatus(Map gameweekTime) {
-//   final gameweek = DateTime.parse(gameweekTime["deadline_time"]);
-//   final currentTime = DateTime.now();
-//   if (gameweek.isBefore(currentTime) && gameweekTime["finished"] == false) {
-//     return 'LIVE!';
-//   } else {
-//     return 'Upcoming!';
-//   }
-// }
 class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,8 +28,6 @@ class MenuScreen extends StatelessWidget {
               IntrinsicHeight(
                 child: Container(
                   margin: EdgeInsets.only(bottom: 12.0),
-                  // padding:
-                  // EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   padding: EdgeInsets.only(top: 10.0, left: 15.0, right: 15.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(3.0)),
@@ -88,6 +56,7 @@ class MenuScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // This is commemted out gwStatus for now.
                       // Row(
                       //   crossAxisAlignment: CrossAxisAlignment.center,
                       //   children: <Widget>[
@@ -132,11 +101,7 @@ class MenuScreen extends StatelessWidget {
                     FlatNavigationButton(
                       icon: Icons.calendar_today,
                       text: 'Fixtures',
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FixturesScreen()),
-                      ),
+                      navigate: FixturesScreen(),
                       // screen: MyTeamScreen(),
                     ),
                     FlatNavigationButton(

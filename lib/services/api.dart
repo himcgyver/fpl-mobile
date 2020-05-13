@@ -1,5 +1,5 @@
-// import 'package:fpl_mobile/services/endpoint_caller.dart';
 import 'package:fpl_mobile/model/bootstrap.dart';
+import 'package:fpl_mobile/model/fixtures.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -11,10 +11,10 @@ class Api {
     return BootstrapData.fromJson(json.decode(response.body));
   }
 
-  // Future<List<dynamic>> getFixturesData(int event) async {
-  //   var response = http.get('$baseUrl/fixtures/?event=$event');
-  //   return fixturesData;
-  // }
+  Future<FixtureList> getFixtureData(int event) async {
+    var response = await http.get('$baseUrl/fixtures/?event=$event');
+    return FixtureList.fromJson(json.decode(response.body));
+  }
 
   // Map<String, dynamic> getCurrentGwData(dynamic gameweekData) {
   //   for (var fixture in gameweekData) {
