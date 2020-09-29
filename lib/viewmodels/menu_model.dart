@@ -1,33 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fpl_mobile/locator.dart';
-import 'package:fpl_mobile/model/event.dart';
-import 'package:fpl_mobile/services/api.dart';
-import 'package:fpl_mobile/model/bootstrap.dart';
 import 'package:fpl_mobile/utilities/helper.dart';
+import 'package:fpl_mobile/models/bootstrap-static/event.dart';
+import 'package:fpl_mobile/services/static_main_data.dart';
 
-class MenuModel extends ChangeNotifier {
-  Api _api = locator<Api>();
-  BootstrapData _allData;
-  Event currentGameweek;
+class MenuViewModel extends ChangeNotifier {
+  final SharedMainData _mainData = locator<SharedMainData>();
 
-  Future<void> getData() async {
-    _allData = await _api.getBootstrapData();
-    currentGameweek = _currentGameweek();
-  }
+  Event get currentGw => _mainData.currentGw;
 
-  Event _currentGameweek() {
-    for (var event in _allData.events) {
-      if (event.isCurrent == true) {
-        return event;
-      }
-    }
-  }
+  // Future getGw() {
+  //   _mainData.currentGw;
+  // }
+  // int get gameweekId {
+  //   return currentGameweek.id;
+  // }
 
-  int get gameweekId {
-    return currentGameweek.id;
-  }
-
-  String get deadline {
-    return Helper.formatDate(currentGameweek.deadlineTime).substring(0, 16);
-  }
+  // String get deadline {
+  //   return Helper.formatDate(currentGameweek.deadlineTime).substring(0, 16);
+  // }
 }

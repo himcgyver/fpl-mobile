@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:fpl_mobile/model/fixtures.dart';
+import 'package:fpl_mobile/models/fixtures.dart';
 import 'package:fpl_mobile/viewmodels/fixtures_model.dart';
 
 class FixturesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var fixturesData = Provider.of<FixturesModel>(context, listen: false);
+    var fixturesData = Provider.of<FixturesViewModel>(context, listen: false);
 
     return Scaffold(
       body: FutureBuilder(

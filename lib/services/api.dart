@@ -1,5 +1,5 @@
-import 'package:fpl_mobile/model/bootstrap.dart';
-import 'package:fpl_mobile/model/fixtures.dart';
+import 'package:fpl_mobile/models/bootstrap-static/bootstrap.dart';
+import 'package:fpl_mobile/models/fixtures.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

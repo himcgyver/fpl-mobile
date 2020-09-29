@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
-import 'package:fpl_mobile/screens/menu_screen.dart';
+import 'package:fpl_mobile/locator.dart';
+import 'package:fpl_mobile/services/static_main_data.dart';
 import 'package:fpl_mobile/viewmodels/menu_model.dart';
+import 'package:fpl_mobile/screens/menu_screen.dart';
+import 'package:fpl_mobile/viewmodels/loading_model.dart';
 
 class LoadingScreenView extends StatefulWidget {
   @override
@@ -11,11 +14,14 @@ class LoadingScreenView extends StatefulWidget {
 
 class _LoadingScreenView extends State<LoadingScreenView> {
   void initiateData() async {
-    await Provider.of<MenuModel>(context, listen: false).getData();
+    await Provider.of<LoadingViewModel>(context, listen: false).initData();
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MenuScreen(),
+        builder: (context) => ChangeNotifierProvider<MenuViewModel>(
+          create: (context) => locator<MenuViewModel>(),
+          child: MenuScreen(),
+        ),
       ),
     );
   }

@@ -9,8 +9,9 @@ import 'package:fpl_mobile/viewmodels/menu_model.dart';
 class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<MenuModel>(context, listen: false);
-    const gwStatus = "LIVE!";
+    var data = Provider.of<MenuViewModel>(context, listen: false);
+
+    // const gwStatus = "LIVE!";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -42,7 +43,7 @@ class MenuScreen extends StatelessWidget {
                         children: <Widget>[
                           GameweekText(text: 'GAMEWEEK', fontSize: 13.0),
                           Text(
-                            '${data.gameweekId}',
+                            '${data.currentGw.id}',
                             style: TextStyle(fontSize: 60.0),
                           ),
                         ],

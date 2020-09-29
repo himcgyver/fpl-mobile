@@ -1,8 +1,8 @@
-import 'package:fpl_mobile/model/event.dart';
-import 'package:fpl_mobile/model/phase.dart';
-import 'package:fpl_mobile/model/team.dart';
-import 'package:fpl_mobile/model/element.dart';
-import 'package:fpl_mobile/model/element_type.dart';
+import 'package:fpl_mobile/models/bootstrap-static/event.dart';
+import 'package:fpl_mobile/models/bootstrap-static/phase.dart';
+import 'package:fpl_mobile/models/bootstrap-static/team.dart';
+import 'package:fpl_mobile/models/bootstrap-static/element.dart';
+import 'package:fpl_mobile/models/bootstrap-static/element_type.dart';
 
 class BootstrapData {
   final List<Event> events;
